@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from "axios";
 
 const ServiceDetail = () => {
     const { serviceId } = useParams();
+    const [service, setService] = useState({});
+
+    useEffect( () => {
+        const url = `http://localhost:5000/services/${serviceId}`
+        axios.get(url)
+        .then(res => setService(res.data))
+    }, [])
     return (
-        <div>
-            <h2>Welcome to detail: {serviceId}</h2>
+        <div className='text-center'>
+            <h2>Welcome to detail: {service.name}</h2>
             <div className='text-center'>
                 <Link to="/checkout">
                     <button className='btn btn-primary'>Proceed Checkout</button>

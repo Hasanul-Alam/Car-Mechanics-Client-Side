@@ -7,9 +7,7 @@ import auth from '../../../firebase.init';
 const Register = () => {
     const [
         createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
+        user
       ] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate();
 
@@ -23,7 +21,6 @@ const Register = () => {
 
     const handleRegister = event =>{
         event.preventDefault();
-        const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
 
@@ -31,17 +28,17 @@ const Register = () => {
     }
 
     return (
-        <div className='register-form'>
-            <h2 style={{textAlign: 'center'}}>Please Register</h2>
-            <form onSubmit={handleRegister}>
-                <input type="text" name="name" id="" placeholder='Your Name'/>
+        <div className='register-form mt-3'>
+            <h2 className='text-primary' style={{textAlign: 'center'}}>Please Register</h2>
+            <form className='w-75 mx-auto' onSubmit={handleRegister}>
+                <input className='form-control' type="text" name="name" id="" placeholder='Your Name'/>
                 
-                <input type="email" name="email" id="" placeholder='Email Address' required/>
+                <input className='form-control' type="email" name="email" id="" placeholder='Email Address' required/>
                 
-                <input type="password" name="password" id="" placeholder='Password' required/>
-                <input type="submit" value="Register" />
+                <input className='form-control' type="password" name="password" id="" placeholder='Password' required/>
+                <input className='btn btn-primary w-25 mx-auto' type="submit" value="Register" />
             </form>
-            <p>Already have an account? <Link to="/login" className='text-danger pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
+            <p className='text-center'>Already have an account? <Link to="/login" className='text-danger pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
         </div>
     );
 };
